@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GameController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gameoflife-web</a> &gt; <a href="index.source.html" class="el_package">com.wakaleo.gameoflife.webtests.controllers</a> &gt; <span class="el_source">GameController.java</span></div><h1>GameController.java</h1><pre class="source lang-java linenums">package com.wakaleo.gameoflife.webtests.controllers;
+
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.wakaleo.gameoflife.domain.Universe;
+
+@Controller
+@RequestMapping(&quot;/game&quot;)
+<span class="fc" id="L16">public class GameController {</span>
+
+<span class="fc" id="L18">    private Random randomGenerator = new Random();</span>
+
+    @RequestMapping(&quot;/new&quot;)
+    public ModelAndView newGame() {
+<span class="fc" id="L22">        ModelAndView mav = new ModelAndView(&quot;game/edit&quot;);</span>
+<span class="fc" id="L23">        Universe universe = new Universe();</span>
+<span class="fc" id="L24">        mav.addObject(&quot;universe&quot;, universe);</span>
+<span class="fc" id="L25">        thinkABit(250);</span>
+<span class="fc" id="L26">        return mav;</span>
+    }
+
+    @RequestMapping(&quot;/start&quot;)
+    public ModelAndView firstGeneration(@RequestParam(&quot;rows&quot;) final int rows,
+                                        @RequestParam(&quot;columns&quot;) final int columns,
+                                        final HttpServletRequest request) {
+
+<span class="fc" id="L34">        Universe universe = universeInstanciatedFromClickedCells(rows, columns, request);</span>
+<span class="fc" id="L35">        thinkABit(200);</span>
+
+<span class="fc" id="L37">        return showGridScreen(universe);</span>
+    }
+
+    @RequestMapping(&quot;/next&quot;)
+    public ModelAndView nextGeneration(@RequestParam(&quot;rows&quot;) final int rows,
+                                       @RequestParam(&quot;columns&quot;) final int columns,
+                                       final HttpServletRequest request) {
+
+<span class="fc" id="L45">        Universe universe = universeInstanciatedFromClickedCells(rows, columns,</span>
+                request);
+<span class="fc" id="L47">        universe.createNextGeneration();</span>
+
+<span class="fc" id="L49">        thinkABit(250);</span>
+
+<span class="fc" id="L51">        return showGridScreen(universe);</span>
+    }
+
+    private void thinkABit(final int max) {
+<span class="fc" id="L55">        int thinkingTime = getRandomGenerator().nextInt(max / 4);</span>
+        try {
+<span class="fc" id="L57">            Thread.currentThread().sleep(thinkingTime);</span>
+<span class="nc" id="L58">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L59">            e.printStackTrace();</span>
+<span class="fc" id="L60">        }</span>
+<span class="fc" id="L61">    }</span>
+
+    private Universe universeInstanciatedByDimensions(final int rows, final int columns) {
+<span class="fc" id="L64">        Universe universe = new Universe(rows, columns);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (int row = 0; row &lt; rows; row++) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            for (int column = 0; column &lt; columns; column++) {</span>
+<span class="fc" id="L67">                universe.setDeadCellAt(row, column);</span>
+            }
+        }
+<span class="fc" id="L70">        return universe;</span>
+    }
+
+    private Universe universeInstanciatedFromClickedCells(final int rows,
+                                                          final int columns,
+                                                          final HttpServletRequest request) {
+<span class="fc" id="L76">        Universe universe = universeInstanciatedByDimensions(rows, columns);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (int row = 0; row &lt; rows; row++) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            for (int column = 0; column &lt; columns; column++) {</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">                if (cellWasClickedAt(row, column, request)) {</span>
+<span class="nc" id="L80">                    universe.setLiveCellAt(row, column);</span>
+                }
+            }
+        }
+<span class="fc" id="L84">        return universe;</span>
+    }
+
+    private ModelAndView showGridScreen(final Universe universe) {
+<span class="fc" id="L88">        ModelAndView mav = new ModelAndView(&quot;game/show&quot;);</span>
+<span class="fc" id="L89">        mav.addObject(&quot;universe&quot;, universe);</span>
+<span class="fc" id="L90">        mav.addObject(&quot;rows&quot;, universe.getCells().length);</span>
+<span class="fc" id="L91">        mav.addObject(&quot;columns&quot;, universe.getCells()[0].length);</span>
+<span class="fc" id="L92">        return mav;</span>
+    }
+
+    private boolean cellWasClickedAt(final int row,
+                                     final int column,
+                                     final HttpServletRequest request) {
+<span class="fc" id="L98">        String cellName = &quot;cell_&quot; + row + &quot;_&quot; + column;</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">        return (request.getParameter(cellName) != null);</span>
+    }
+
+    private Random getRandomGenerator() {
+<span class="fc" id="L103">        return randomGenerator;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>GridReader.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gameoflife-core</a> &gt; <a href="index.source.html" class="el_package">com.wakaleo.gameoflife.domain</a> &gt; <span class="el_source">GridReader.java</span></div><h1>GridReader.java</h1><pre class="source lang-java linenums">package com.wakaleo.gameoflife.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L6">public class GridReader {</span>
+
+<span class="fc" id="L8">    private static final String NEW_LINE = System.getProperty(&quot;line.separator&quot;);</span>
+
+    public Cell[][] loadFrom(final String gridContents) {
+<span class="fc" id="L11">        List&lt;Cell[]&gt; rows = new ArrayList&lt;Cell[]&gt;();</span>
+<span class="fc" id="L12">        String[] rowValues = splitIntoRows(gridContents);</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        for (String row : rowValues) {</span>
+<span class="fc" id="L14">            Cell[] cellsInRow = splitIntoCells(row);</span>
+<span class="fc" id="L15">            rows.add(cellsInRow);</span>
+        }
+<span class="fc" id="L17">        return (Cell[][]) rows.toArray(new Cell[0][0]);</span>
+    }
+
+    private Cell[] splitIntoCells(final String row) {
+        // TODO: ugly code
+<span class="fc" id="L22">        char[] cellSymbols = row.trim().toCharArray();</span>
+<span class="fc" id="L23">        List&lt;Cell&gt; cellsInRow = new ArrayList&lt;Cell&gt;();</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for (char cellSymbol : cellSymbols) {</span>
+<span class="fc" id="L25">            Cell cell = Cell.fromSymbol(Character.toString(cellSymbol));</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">            if (cell == null) {</span>
+<span class="fc" id="L27">                throw new IllegalArgumentException();</span>
+            }
+<span class="fc" id="L29">            cellsInRow.add(cell);</span>
+        }
+<span class="fc" id="L31">        return cellsInRow.toArray(new Cell[0]);</span>
+    }
+
+    private String[] splitIntoRows(final String gridContents) {
+<span class="fc" id="L35">        return gridContents.split(NEW_LINE);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span></div></body></html>

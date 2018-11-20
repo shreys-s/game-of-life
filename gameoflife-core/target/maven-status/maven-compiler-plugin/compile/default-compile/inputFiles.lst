@@ -1,0 +1,5 @@
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/main/java/com/wakaleo/gameoflife/domain/Grid.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/main/java/com/wakaleo/gameoflife/domain/GridWriter.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/main/java/com/wakaleo/gameoflife/domain/Universe.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/main/java/com/wakaleo/gameoflife/domain/GridReader.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/main/java/com/wakaleo/gameoflife/domain/Cell.java

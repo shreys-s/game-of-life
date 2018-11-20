@@ -1,0 +1,10 @@
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouPlayTheGameOfLife.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/integration/WhenYouStoreGamesInADatabase.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouCreateANewUniverse.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/test/categories/IntegrationTests.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouCreateACell.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouPrintAGrid.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/test/categories/SlowTests.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouCreateAGrid.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/test/categories/RegressionTests.java
+/var/lib/jenkins/workspace/HelloPipeline/gameoflife-core/src/test/java/com/wakaleo/gameoflife/domain/WhenYouReadAGridFromAString.java
