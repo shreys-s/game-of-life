@@ -2,7 +2,7 @@ node('master')
 {
    stage("CheckoutSCM")
    {
-       echo "Checking out my code"
+       echo "Checking out my code here"
        git credentialsId: '89779006-a479-4a47-b29f-e44f4300a668', url: 'http://192.168.56.105:9000/shreys/game-of-life'
    }
    stage("Code Build")
