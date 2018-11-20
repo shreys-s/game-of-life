@@ -12,7 +12,7 @@ node('master')
    }
    stage("Unit Testing")
    {
-       echo "Starting Unit Test"
+       echo "Starting Unit Test here"
        junit '*/target/surefire-reports/*.xml'
    }
    stage("Sonarqube Analysis")
