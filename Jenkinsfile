@@ -7,7 +7,7 @@ node('master')
    }
    stage("Code Build")
    {
-       echo "Starting Maven Code Build here"
+       echo "Starting Maven Code Build here.."
        sh 'mvn clean install'
    }
    stage("Unit Testing")
