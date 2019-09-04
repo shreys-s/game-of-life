@@ -498,7 +498,7 @@
       <repository>
         <id>test</id>
         <name>test</name>
-        <url>http://192.168.56.105:9082/artifactory/test</url>
+        <url>http://192.168.56.104:9082/artifactory/test</url>
       </repository>
         </distributionManagement>
 </project>
