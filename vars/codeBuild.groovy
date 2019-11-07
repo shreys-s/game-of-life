@@ -1,7 +1,5 @@
 def call(body) {
-script
-{
-	if (env.BRANCH_NAME == 'featurepraveen' || env.BRANCH_NAME.startsWith('feature') || env.BRANCH_NAME.startsWith('release'))
+if (env.BRANCH_NAME == 'featurepraveen' || env.BRANCH_NAME.startsWith('feature') || env.BRANCH_NAME.startsWith('release'))
 	{
 		echo "Running build from branch ${env.BRANCH_NAME}"
 		sh 'mvn clean install'
@@ -11,6 +9,5 @@ script
 	{
 		echo 'The repository/branch name does not meet Clorox branch naming standard'
 	}
-}
-	    return this
+	return this
 }
