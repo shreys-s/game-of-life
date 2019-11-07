@@ -1,4 +1,4 @@
-@Library('jenkins-pipeline-library@featurepraveen') _
+@Library('jenkins-pipeline-library@master') _
  
 pipeline
 {
@@ -10,7 +10,7 @@ pipeline
             steps 
 			{
             gitCheckout(
-                branch: "master",
+                branch: "featurepraveen",
                 url: "https://github.com/shreys-s/game-of-life"
             )
             }
