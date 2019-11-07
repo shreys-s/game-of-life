@@ -1,4 +1,4 @@
-def codeBuild() {
+def call(body) {
 script
 {
 	if (env.BRANCH_NAME == 'featurepraveen' || env.BRANCH_NAME.startsWith('feature') || env.BRANCH_NAME.startsWith('release'))
@@ -12,4 +12,5 @@ script
 		echo 'The repository/branch name does not meet Clorox branch naming standard'
 	}
 }
+	    return this
 }
