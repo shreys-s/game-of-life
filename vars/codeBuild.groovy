@@ -1,4 +1,4 @@
-def call(Map stageParams) {
+def codeBuild() {
 script
 {
 	if (env.BRANCH_NAME == 'featurepraveen' || env.BRANCH_NAME.startsWith('feature') || env.BRANCH_NAME.startsWith('release'))
