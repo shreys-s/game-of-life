@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wakaleo.gameoflife</groupId>
     <artifactId>gameoflife</artifactId>
-    <version>1.0.${v}-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>gameoflife</name>
     <url>https://github.com/wakaleo/game-of-life</url>
@@ -494,11 +494,4 @@
             </reporting>
         </profile>
     </profiles>
-    <distributionManagement>
-      <repository>
-        <id>test</id>
-        <name>test</name>
-        <url>http://192.168.56.104:9082/artifactory/test</url>
-      </repository>
-        </distributionManagement>
 </project>
