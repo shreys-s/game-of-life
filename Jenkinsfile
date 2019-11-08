@@ -12,7 +12,6 @@ node("master")
 	stage('Unit Testing')
 	{
 		junit allowEmptyResults: true, testResults: '**\\target\\surefire-reports\\*.xml'
-                archive 'target\\*.jar'
 	}   
     stage("Selenium Testing")
     {
