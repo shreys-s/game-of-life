@@ -15,12 +15,12 @@ node("master")
 	}   
     stage("Selenium Testing")
     {
-		sh "E:\\apache-maven-3.6.2\\bin\\mvn -f gameoflife-selenium\\pom.xml -Dhostname=localhost  -Dport=8082 -Dcontext=gameoflife -Dmaven.test.failure.ignore=true test"
+		bat "E:\\apache-maven-3.6.2\\bin\\mvn -f gameoflife-selenium\\pom.xml -Dhostname=localhost  -Dport=8082 -Dcontext=gameoflife -Dmaven.test.failure.ignore=true test"
 	    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "gameoflife-selenium\\target\\surefire-reports", reportFiles: "emailable-report.html", reportName: "Selenium Report", reportTitles: ''])
     }
     stage("Performance Testing")
     {
-		sh "E:\\apache-maven-3.6.2\\bin\\mvn -f gameoflife-jmeter\\pom.xml -Dhostname=localhost -Dport=8082 -Dcontext=gameoflife clean verify -Pperformance"
+		bat "E:\\apache-maven-3.6.2\\bin\\mvn -f gameoflife-jmeter\\pom.xml -Dhostname=localhost -Dport=8082 -Dcontext=gameoflife clean verify -Pperformance"
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "gameoflife-jmeter\\target\\reports", reportFiles: "index.html", reportName: "Jmeter Report", reportTitles: ''])
     }
 }
