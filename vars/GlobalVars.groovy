@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 
-class GlobalVars {
+def GlobalVars() 
+{
    static String foo = "bar"
 }
