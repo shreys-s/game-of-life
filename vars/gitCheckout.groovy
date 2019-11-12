@@ -5,7 +5,4 @@ def call(Map stageParams) {
         branches: [[name:  stageParams.branch ]],
         userRemoteConfigs: [[ url: stageParams.url ]]
     ])
- class gitCheckout {
-    final String a = "STARTED"
-}
-}
+ }
