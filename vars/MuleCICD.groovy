@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 def call(String name = 'human') 
 {
 	if (${name} == 'develop' || ${name}.startsWith('feature'))
