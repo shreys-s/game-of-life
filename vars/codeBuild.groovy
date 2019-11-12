@@ -1,4 +1,4 @@
 def ref() 
 {
-    return sh(script: 'mvn clean install ', returnStdout: true).trim()
+    return bat(script: 'mvn -f pom.xml clean install', returnStdout: true).trim()
 }
