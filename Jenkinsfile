@@ -10,7 +10,8 @@ node
    }
    stage('Maven Code Build')
    {
-                sh "/opt/maven/bin/mvn -f pom.xml clean test package verify checkstyle:checkstyle pmd:pmd findbugs:findbugs javadoc:javadoc cobertura:cobertura -Pmetrics"
+                //sh "/opt/maven/bin/mvn -f pom.xml clean test package verify checkstyle:checkstyle pmd:pmd findbugs:findbugs javadoc:javadoc cobertura:cobertura -Pmetrics"
+	   sh "/opt/maven/bin/mvn -f pom.xml clean install test"
    }
    stage('Unit Testing')
    {
