@@ -1,12 +1,12 @@
 node
 {
-   def SONAR_URL = 'http://192.168.56.104:9095'
+   def SONAR_URL = 'http://192.168.1.120:9000'
    def SONAR_LOGIN='admin'
-   def SONAR_PASSWORD='admin'
+   def SONAR_PASSWORD='Password'
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '5', artifactNumToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '5')), pipelineTriggers([])])
    stage('Code Checkout')
    {
-       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'bbb48b43-0e32-4a0d-b833-3d611916d027', url: 'https://github.com/shreys-s/game-of-life.git']]])
+       checkout([$class: 'GitSCM', branches: [[name: '*/featurepraveen']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'bbb48b43-0e32-4a0d-b833-3d611916d027', url: 'https://github.com/shreysangal/game-of-life.git']]])
    }
    stage('Maven Code Build')
    {
@@ -24,7 +24,7 @@ node
             sh "mvn -e -B sonar:sonar -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD} -Dsonar.scm.disabled=true"
                 }
    }
-        stage("Publish to Artifactory")
+        /* stage("Publish to Artifactory")
         {
             sh "mvn deploy" 
         }
@@ -71,5 +71,5 @@ node
             sh 'echo  "\u2600 ACCESS PUSH GATEWAY ENVIRONMENT HERE: http://192.168.56.104:7091 "'
             sh 'echo  "\u2600 ACCESS ALERT MANAGER ENVIRONMENT HERE: http://192.168.56.104:7093 "'
             sh 'echo  "\u2600 ACCESS GRAFANA ENVIRONMENT HERE: http://192.168.56.104:7000 "'
-        }
+        }*/
 }
