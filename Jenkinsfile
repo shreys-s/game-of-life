@@ -10,7 +10,7 @@ node
    }
    stage('Maven Code Build')
    {
-                sh "mvn -f pom.xml clean test package verify checkstyle:checkstyle pmd:pmd findbugs:findbugs javadoc:javadoc cobertura:cobertura -Pmetrics"
+                sh "/opt/maven/bin/mvn -f pom.xml clean test package verify checkstyle:checkstyle pmd:pmd findbugs:findbugs javadoc:javadoc cobertura:cobertura -Pmetrics"
    }
    stage('Unit Testing')
    {
@@ -19,10 +19,7 @@ node
    }
    stage('Sonarqube Analysis')
    {
-                withSonarQubeEnv('Sonar')
-                {
-            sh "mvn -e -B sonar:sonar -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD} -Dsonar.scm.disabled=true"
-                }
+         sh "/opt/maven/bin/mvn -e -B sonar:sonar -Dsonar.host.url=${SONAR_URL} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD} -Dsonar.scm.disabled=true"
    }
         /* stage("Publish to Artifactory")
         {
